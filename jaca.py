@@ -105,3 +105,6 @@ class Jaca(pygame.sprite.Sprite):
         else:
             self.speed = 5
                 
+
+    def jaculka(self):
+        pass
