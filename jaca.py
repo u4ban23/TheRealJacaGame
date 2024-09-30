@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from somerek import *
+from rowerek import *
 
 class Jaca(pygame.sprite.Sprite):
     def __init__(self, screen=None):
@@ -17,6 +18,7 @@ class Jaca(pygame.sprite.Sprite):
         self.rect.topleft = (100, 200)
         self.piwko_picked_up = False
         self.somerek = Piwko(self.screen)
+        self.rowerek = Rower(self.screen)
         self.direction = 0
 
     def blit(self):
@@ -81,6 +83,9 @@ class Jaca(pygame.sprite.Sprite):
 
     def pickUpAvailable(self):
         return self.somerek.rect.colliderect(self.rect)
+    
+    def naRowerekAvaible(self):
+        return self.rowerek.rect.colliderect(self.rect)
         
     def pickUpPiwko(self, event):
         if event.type == pygame.KEYDOWN:
@@ -105,3 +110,10 @@ class Jaca(pygame.sprite.Sprite):
         else:
             self.speed = 5
                 
+    def naRower(self,event):
+        # print(self.naRowerekAvaible, self.pickUpAvailable, self.piwko_picked_up)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_e and self.naRowerekAvaible and not self.pickUpAvailable and not self.piwko_picked_up:
+                self.rowerek.rect.x = self.rect.x
+                self.rowerek.rect.y = self.rect.y
+
