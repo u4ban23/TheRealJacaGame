@@ -117,3 +117,5 @@ class Jaca(pygame.sprite.Sprite):
                 self.rowerek.rect.x = self.rect.x
                 self.rowerek.rect.y = self.rect.y
 
+    def jacus(self):
+        pass
