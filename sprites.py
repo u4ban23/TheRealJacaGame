@@ -27,9 +27,4 @@ class Sprites:
         self.jaca.movement()
         self.jaca.border()
         
-    def mechanic(self, event):
-        self.jaca.pickUpPiwko(event)
-        self.jaca.wychlej(event)
-        self.jaca.naRower(event)
-        # print(self.jaca.piwko_picked_up)
-        # print(self.somerek.image_count, self.jaca.piwko_picked_up)
+

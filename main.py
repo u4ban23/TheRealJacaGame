@@ -3,6 +3,9 @@ from settings import *
 import pygame
 import sprites
 from background import *
+import initMechanic
+
+
 
 pygame.init()
 
@@ -12,6 +15,16 @@ class Game:
         self.sprites = sprites.Sprites(self.screen)
         self.clock = pygame.time.Clock()
         self.background = Background(self.screen)
+        self.mechanic = initMechanic.Mechanic(self.screen)
+
+
+    def upload(self, event):
+        Background(self.screen)
+        self.sprites.blit_sprites(event)
+        self.sprites.move_sprites()
+
+    def uploadMechanic(self, event):
+        self.mechanic.initMechanicPiwko(event)
 
     def game_loop(self):
         while True:
@@ -20,13 +33,10 @@ class Game:
                     pygame.quit()
                     sys.exit()
 
-                self.sprites.jaca.pickUpPiwko(event)
-                self.sprites.jaca.wychlej(event)
+                self.uploadMechanic(event)
 
-            Background(self.screen)
-            self.sprites.blit_sprites(event)
-            self.sprites.move_sprites()
-            self.sprites.mechanic(event)
+            self.upload(event)
+            
             self.clock.tick(FPS)
             pygame.display.update()
 

@@ -16,10 +16,9 @@ class Jaca(pygame.sprite.Sprite):
         self.rect = self.current_image.get_rect()
         self.speed = 5
         self.rect.topleft = (100, 200)
-        self.piwko_picked_up = False
         self.somerek = Piwko(self.screen)
-        self.rowerek = Rower(self.screen)
         self.direction = 0
+        self.piwko_picked_up = False
 
     def blit(self):
         self.screen.blit(self.images[self.image_count], self.rect)
@@ -81,41 +80,14 @@ class Jaca(pygame.sprite.Sprite):
         elif self.rect.y >= WINDOW_HEIGHT - self.rect.height:
             self.rect.y = WINDOW_HEIGHT - self.rect.height
 
-    def pickUpAvailable(self):
-        return self.somerek.rect.colliderect(self.rect)
-    
+
     def naRowerekAvaible(self):
         return self.rowerek.rect.colliderect(self.rect)
         
-    def pickUpPiwko(self, event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_e and self.pickUpAvailable():
-                self.piwko_picked_up = not self.piwko_picked_up
-                if self.piwko_picked_up:
-                    pass
-            
-    def wychlej(self, event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_f and self.piwko_picked_up:
-                self.somerek.image_count += 1
-                self.somerek.current_image = self.somerek.images[self.somerek.image_count]
-                if self.somerek.image_count > 2:
-                    self.somerek.image_count = 2
-
-        ### actions after drink
-        if self.somerek.image_count == 1:
-            self.speed = 7
-        elif self.somerek.image_count == 2:
-            self.speed = 10
-        else:
-            self.speed = 5
-                
+    
     def naRower(self,event):
         # print(self.naRowerekAvaible, self.pickUpAvailable, self.piwko_picked_up)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_e and self.naRowerekAvaible and not self.pickUpAvailable and not self.piwko_picked_up:
                 self.rowerek.rect.x = self.rect.x
                 self.rowerek.rect.y = self.rect.y
-
-    def jacus(self):
-        pass
