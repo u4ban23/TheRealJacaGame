@@ -18,8 +18,12 @@ class Piwko(pygame.sprite.Sprite):
         
     def blit(self):
         self.screen.blit(self.current_image, self.rect)
+        print(self.image_count)
         # pygame.draw.rect(self.screen, (0, 255, 0, 100), self.rect, 2)  ## hitbox
 
-        
+    def update_image(self):
+        self.current_image = self.images[self.image_count]
+        self.rect = self.current_image.get_rect()
+        self.rect.topleft = (WINDOW_WIDTH/2, WINDOW_HEIGHT/2)
 
     

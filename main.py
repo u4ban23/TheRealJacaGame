@@ -15,7 +15,7 @@ class Game:
         self.sprites = sprites.Sprites(self.screen)
         self.clock = pygame.time.Clock()
         self.background = Background(self.screen)
-        self.mechanic = initMechanic.Mechanic(self.screen)
+        self.mechanic = initMechanic.Mechanic(self.screen, self.sprites.jaca, self.sprites.somerek)
 
 
     def upload(self, event):
@@ -25,6 +25,7 @@ class Game:
 
     def uploadMechanic(self, event):
         self.mechanic.initMechanicPiwko(event)
+        self.mechanic.mechanicPiwko.wychlej(event)
 
     def game_loop(self):
         while True:
